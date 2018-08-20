@@ -1,0 +1,125 @@
+html, body, .App {
+	height: 100vh;
+}
+
+.App {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.Nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #222;
+  padding: 16px 32px;
+  color: white;
+}
+
+.Nav h1, .Nav p {
+	margin: 0;
+	font-family: monospace;
+	font-weight: normal;
+}
+
+.Nav h1 {
+	margin-top: -6px;
+}
+
+@media screen and (max-width: 680px) {
+	.Nav {
+		flex-direction: column;
+	}
+
+	.Nav p {
+		margin-bottom: 16px;
+	}
+}
+
+.NavGroup {
+	display: flex;
+	align-items: center;
+}
+
+.NavGroup p {
+	margin: 0 24px;
+}
+
+.Messages {
+	flex-grow: 1;
+	height: 0;
+	overflow-y: auto;
+}
+
+button {
+	border: 2px solid white;
+	background-color: #222;
+	color: white;
+	padding: 8px 32px;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+button:hover {
+	background-color: #999;
+}
+
+.Message {
+	padding: 32px;
+	display: flex;
+	align-items: center;
+}
+
+.Message .Timestamp {
+	font-family: monospace;
+	color: #999;
+	margin-right: 22px;
+}
+
+.Message .MessageText {
+	flex-grow: 1;
+	padding: 0 32px;
+}
+
+.Message.out .MessageText {
+	text-align: right;
+}
+
+.Message.out {
+	background-color: #f0f0f0;
+}
+
+.SendMessage {
+	height: 64px;
+	background-color: #222;
+	display: flex;
+	padding: 16px 32px;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.SendMessage form {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.SendMessage input {
+	font-size: 20px;
+	padding: 12px 16px;
+	background-color: white;
+	color: black;
+	border: 2px solid white;
+	flex-grow: 1;
+}
+
+.SendMessage input:focus {
+	outline: 0;
+}
+
+.SendMessage button {
+	height: 51px;
+	margin-left: -2px;
+}
