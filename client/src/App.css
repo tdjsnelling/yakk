@@ -32,8 +32,8 @@ html, body, .App {
 		flex-direction: column;
 	}
 
-	.Nav p {
-		margin-bottom: 16px;
+	.NavGroup:first-child {
+		margin-bottom: 24px;
 	}
 }
 
@@ -44,6 +44,11 @@ html, body, .App {
 
 .NavGroup p {
 	margin: 0 24px;
+}
+
+.Icon {
+	width: 32px;
+	margin-right: 16px
 }
 
 .Messages {

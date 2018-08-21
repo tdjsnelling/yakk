@@ -5,6 +5,7 @@ import moment from 'moment'
 import Linkify from 'linkifyjs/react'
 
 import './App.css'
+import icon from './icon.png'
 
 class App extends Component {
   constructor() {
@@ -153,6 +154,7 @@ class App extends Component {
       <div className="App">
         <header className="Nav">
           <div className="NavGroup">
+            <img src={icon} className="Icon" alt="yakk icon" />
             <h1>yakk</h1>
             {this.state.connected && <p>ID: {this.state.socket.id}</p>}
           </div>
