@@ -4,6 +4,8 @@ import request from 'request'
 import moment from 'moment'
 import Linkify from 'linkifyjs/react'
 
+import Modal from './components/Modal'
+
 import './App.css'
 import icon from './icon.png'
 
@@ -24,6 +26,7 @@ class App extends Component {
 
     this.findPartner = this.findPartner.bind(this)
     this.sendMessage = this.sendMessage.bind(this)
+    this.toggleOptions = this.toggleOptions.bind(this)
   }
 
   componentDidMount() {
@@ -149,6 +152,10 @@ class App extends Component {
     }
   }
 
+  toggleOptions() {
+    this.setState({ showOptions: !this.state.showOptions })
+  }
+
   render() {
     return (
       <div className="App">
@@ -162,6 +169,7 @@ class App extends Component {
           <div className="NavGroup">
             <p>{`${this.state.usersOnline}  users online!`}</p>
             <button onClick={this.findPartner}>Find a new partner</button>
+            <button onClick={this.toggleOptions}>Options</button>
           </div>
         </header>
         <div className="Messages" ref={this.messageContainerRef}>
@@ -174,6 +182,9 @@ class App extends Component {
               <button>Send</button>
             </form>
           </div>
+        }
+        {this.state.showOptions &&
+          <Modal title="Options" toggle={this.toggleOptions} />
         }
       </div>
     )
