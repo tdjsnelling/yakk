@@ -157,6 +157,7 @@ class App extends Component {
             <img src={icon} className="Icon" alt="yakk icon" />
             <h1>yakk</h1>
             {this.state.connected && <p>ID: {this.state.socket.id}</p>}
+            {!this.state.connected && <p>unable to connect! we'll keep trying for you...</p>}
           </div>
           <div className="NavGroup">
             <p>{`${this.state.usersOnline}  users online!`}</p>
