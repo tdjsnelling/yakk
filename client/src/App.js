@@ -9,6 +9,8 @@ import Modal from './components/Modal'
 import './App.css'
 import icon from './icon.png'
 
+const SERVER = 'http://localhost:3001'
+
 class App extends Component {
   constructor() {
     super()
@@ -30,7 +32,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const socket = io('http://localhost:3001')
+    const socket = io(SERVER)
 
     socket.on('connect', () => {
       this.setState({
@@ -83,7 +85,7 @@ class App extends Component {
           messages: messages
         })
 
-        request('http://localhost:3001/makeFree/' + this.state.socket.id, (err, res, body) => {
+        request(`${SERVER}/makeFree/` + this.state.socket.id, (err, res, body) => {
           if (err) {
             console.error(err)
           }
@@ -98,13 +100,13 @@ class App extends Component {
       messages: []
     })
 
-    request('http://localhost:3001/makeFree/' + this.state.socket.id, (err, res, body) => {
+    request(`${SERVER}/makeFree/` + this.state.socket.id, (err, res, body) => {
       if (err) {
         console.error(err)
       }
     })
 
-    request('http://localhost:3001/discover/' + this.state.socket.id, (err, res, body) => {
+    request(`${SERVER}/discover/` + this.state.socket.id, (err, res, body) => {
       if (body !== 'no-free-users') {
         this.setState({
           partner: body
@@ -144,7 +146,7 @@ class App extends Component {
         this.messageContainerRef.current.scrollTop = this.messageContainerRef.current.scrollHeight
       }, 10)
 
-      request.post('http://localhost:3001/send', { form: { message: message, to: this.state.partner } }, (err, res, body) => {
+      request.post(`${SERVER}/send`, { form: { message: message, to: this.state.partner } }, (err, res, body) => {
         if (err) {
           console.error(err)
         }
