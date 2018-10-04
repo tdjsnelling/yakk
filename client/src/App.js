@@ -171,10 +171,11 @@ class App extends Component {
           <div className="NavGroup">
             <p>{`${this.state.usersOnline}  users online!`}</p>
             <button onClick={this.findPartner}>Find a new partner</button>
-            <button onClick={this.toggleOptions}>Options</button>
+            {/* <button onClick={this.toggleOptions}>Options</button> */}
           </div>
         </header>
         <div className="Messages" ref={this.messageContainerRef}>
+          {!this.state.connected && <i className="material-icons loading">hourglass_empty</i>}
           {this.state.messages.map((message, i) => <div className={`Message ${message.d === 'out' ? 'out' : 'in'}`} key={i}><span className="Timestamp">{moment(parseInt(message.t, 10)).format('HH:mm:ss')}</span><Linkify tagName="span" className="MessageText">{message.m}</Linkify></div>)}
         </div>
         {this.state.partner &&
