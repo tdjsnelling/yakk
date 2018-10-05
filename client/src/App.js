@@ -3,6 +3,7 @@ import io from 'socket.io-client'
 import request from 'request'
 import moment from 'moment'
 import Linkify from 'linkifyjs/react'
+import crypto from 'crypto'
 
 import Modal from './components/Modal'
 
@@ -28,6 +29,7 @@ class App extends Component {
 
     this.findPartner = this.findPartner.bind(this)
     this.sendMessage = this.sendMessage.bind(this)
+    this.shortId = this.shortId.bind(this)
     this.toggleOptions = this.toggleOptions.bind(this)
   }
 
@@ -54,7 +56,7 @@ class App extends Component {
       })
 
       let messages = [...this.state.messages]
-      messages.push({ d: 'in', m: 'Connected to partner ' + this.state.partner + '. Start yakking!', t: Date.now() })
+      messages.push({ d: 'in', m: 'Connected to partner ' + this.shortId(this.state.partner) + '. Start yakking!', t: Date.now() })
       this.setState({
         messages: messages
       })
@@ -113,7 +115,7 @@ class App extends Component {
         })
 
         let messages = [...this.state.messages]
-        messages.push({ d: 'in', m: 'Connected to partner ' + this.state.partner, t: Date.now() })
+        messages.push({ d: 'in', m: 'Connected to partner ' + this.shortId(this.state.partner) + '. Start yakking!', t: Date.now() })
         this.setState({
           messages: messages
         })
@@ -154,6 +156,11 @@ class App extends Component {
     }
   }
 
+  shortId(id) {
+    const hash = crypto.createHash('sha256').update(id).digest('hex')
+    return hash.slice(0, 8)
+  }
+
   toggleOptions() {
     this.setState({ showOptions: !this.state.showOptions })
   }
@@ -165,7 +172,7 @@ class App extends Component {
           <div className="NavGroup">
             <img src={icon} className="Icon" alt="yakk icon" />
             <h1>yakk</h1>
-            {this.state.connected && <p>ID: {this.state.socket.id}</p>}
+            {this.state.connected && <p>ID: {this.shortId(this.state.socket.id)}</p>}
             {!this.state.connected && <p>unable to connect! we'll keep trying for you...</p>}
           </div>
           <div className="NavGroup">

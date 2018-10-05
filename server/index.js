@@ -1,8 +1,8 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+const server = require('http').createServer(app)
+const io = require('socket.io')(server)
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
