@@ -6,7 +6,7 @@
     "moment": "^2.22.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "react-scripts": "1.1.4",
+    "react-scripts": "^2.1.1",
     "socket.io-client": "^2.1.1"
   },
   "scripts": {
@@ -15,5 +15,11 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "author": "Tom Snelling"
+  "author": "Tom Snelling",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
