@@ -1,6 +1,15 @@
+.Wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .Container {
   max-width: 700px;
   margin: 0 auto;
+  padding: 0 8px;
   text-align: center;
   color: #222;
 }
@@ -8,6 +17,7 @@
 .Logotype {
   font-size: 140px;
   font-family: monospace;
+  margin-top: 0;
 }
 
 .Blurb {

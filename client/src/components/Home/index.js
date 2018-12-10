@@ -27,21 +27,23 @@ class Home extends React.PureComponent {
 
   render () {
     return (
-      <div className="Container">
-        <h1 className="Logotype">yakk</h1>
-        <p className="Blurb">yakk is an anonymous chat service that partners you with a random user from anywhere on the planet. it is a great way to make new friends, or it's perfect if you're just bored and want to chat!</p>
-        <a className="Button" onClick={ () => { this.recaptchaRef.current.execute() } }>start yakking</a>
-        <ul className="Links">
-          <li><a onClick={ () => { this.props.history.push('/terms') } }>terms & conditions</a></li>
-          <li><a href="https://github.com/tdjsnelling/yakk">open source</a></li>
-        </ul>
+      <div className="Wrapper">
+        <div className="Container">
+          <h1 className="Logotype">yakk</h1>
+          <p className="Blurb">yakk is an anonymous chat service that partners you with a random user from anywhere on the planet. it is a great way to make new friends, or it's perfect if you're just bored and want to chat!</p>
+          <a className="Button" onClick={ () => { this.recaptchaRef.current.execute() } }>start yakking</a>
+          <ul className="Links">
+            <li><a onClick={ () => { this.props.history.push('/terms') } }>terms & conditions</a></li>
+            <li><a onClick={ () => { this.props.history.push('/privacy') } }>privacy policy</a></li>
+          </ul>
 
-        <ReCAPTCHA
-          ref={this.recaptchaRef}
-          size="invisible"
-          sitekey="6Le29X8UAAAAADGvatsZ2-O7XJjmUyoFhPKyLAqf"
-          onChange={this.captchaComplete}
-        />
+          <ReCAPTCHA
+            ref={this.recaptchaRef}
+            size="invisible"
+            sitekey="6Le29X8UAAAAADGvatsZ2-O7XJjmUyoFhPKyLAqf"
+            onChange={this.captchaComplete}
+          />
+        </div>
       </div>
     )
   }
