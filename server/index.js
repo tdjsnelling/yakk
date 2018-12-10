@@ -80,6 +80,15 @@ app.post('/send', (req, res) => {
 	res.sendStatus(200)
 })
 
+app.post('/typing', (req, res) => {
+	res.setHeader('Access-Control-Allow-Origin', '*')
+
+	const userSocket = users[req.body.to].socket
+	userSocket.emit('notifyTyping', req.body.isTyping)
+
+	res.sendStatus(200)
+})
+
 // helpers
 
 const getRandomFreeUserId = (initiatingUser) => {

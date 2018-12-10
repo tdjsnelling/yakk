@@ -21,7 +21,11 @@ class App extends Component {
       partner: null,
       connected: false,
       messages: [],
-      usersOnline: 0
+      usersOnline: 0,
+      isTyping: {
+        self: false,
+        partner: false
+      }
     }
 
     this.messageContainerRef = React.createRef()
@@ -31,6 +35,7 @@ class App extends Component {
     this.sendMessage = this.sendMessage.bind(this)
     this.shortId = this.shortId.bind(this)
     this.toggleOptions = this.toggleOptions.bind(this)
+    this.monitorTyping = this.monitorTyping.bind(this)
   }
 
   componentDidMount() {
@@ -94,6 +99,10 @@ class App extends Component {
         })
       }
     })
+
+    socket.on('notifyTyping', status => {
+      this.setState({ isTyping: { partner: status === 'true' } })
+    })
   }
 
   findPartner() {
@@ -153,7 +162,17 @@ class App extends Component {
           console.error(err)
         }
       })
+
+      this.notifyOfTyping(false)
     }
+  }
+
+  notifyOfTyping(status) {
+    request.post(`${SERVER}/typing`, { form: { isTyping: status, to: this.state.partner } }, (err, res, body) => {
+      if (err) {
+        console.error(err)
+      }
+    })
   }
 
   shortId(id) {
@@ -163,6 +182,17 @@ class App extends Component {
 
   toggleOptions() {
     this.setState({ showOptions: !this.state.showOptions })
+  }
+
+  monitorTyping() {
+    if (!this.state.isTyping.self) {
+      this.setState({ isTyping: { self: true } })
+      this.notifyOfTyping(true)
+      setTimeout(() => {
+        this.setState({ isTyping: { self: false } })
+        this.notifyOfTyping(false)
+      }, 1000)
+    }
   }
 
   render() {
@@ -178,7 +208,6 @@ class App extends Component {
           <div className="NavGroup">
             <p>{`${this.state.usersOnline}  users online!`}</p>
             <button onClick={this.findPartner}>Find a new partner</button>
-            {/* <button onClick={this.toggleOptions}>Options</button> */}
           </div>
         </header>
         <div className="Messages" ref={this.messageContainerRef}>
@@ -186,11 +215,14 @@ class App extends Component {
           {this.state.messages.map((message, i) => <div className={`Message ${message.d === 'out' ? 'out' : 'in'}`} key={i}><span className="Timestamp">{moment(parseInt(message.t, 10)).format('HH:mm:ss')}</span><Linkify tagName="span" className="MessageText">{message.m}</Linkify></div>)}
         </div>
         {this.state.partner &&
-          <div className="SendMessage">
-            <form onSubmit={this.sendMessage}>
-              <input ref={this.messageRef} />
-              <button>Send</button>
-            </form>
+          <div className="SendMessageWrapper">
+            {this.state.isTyping.partner && <div className="PartnerTyping">partner is typing...</div>}
+            <div className="SendMessage">
+              <form onSubmit={this.sendMessage}>
+                <input ref={this.messageRef} onChange={this.monitorTyping} />
+                <button>Send</button>
+              </form>
+            </div>
           </div>
         }
         {this.state.showOptions &&

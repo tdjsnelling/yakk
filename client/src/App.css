@@ -95,6 +95,21 @@ button:hover {
 	background-color: #f0f0f0;
 }
 
+.SendMessageWrapper {
+	position: relative;
+}
+
+.PartnerTyping {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 8px 32px;
+	background: #f0f0f0;
+	transform: translateY(-100%);
+	font-family: monospace;
+}
+
 .SendMessage {
 	height: 64px;
 	background-color: #222;
