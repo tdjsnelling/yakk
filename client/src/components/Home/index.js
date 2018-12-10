@@ -43,8 +43,8 @@ class Home extends React.PureComponent {
       <div className="Wrapper">
         <div className="Container">
           <h1 className="Logotype">yakk</h1>
-          <p className="Blurb">yakk is an anonymous chat service that partners you with a random user from anywhere on the planet. it is a great way to make new friends, or it's perfect if you're just bored and want to chat!</p>
-          <p className="UserCount">{this.state.userCount} users online</p>
+          <p className="Blurb">yakk is an anonymous chat service that partners you with a random user from anywhere on the planet. it is a great way to make new friends, or it's perfect if you're bored and just want to chat!</p>
+          <p className="UserCount">{this.state.userCount} users online now</p>
           <a className="Button" onClick={ () => { this.recaptchaRef.current.execute() } }>start yakking</a>
           <ul className="Links">
             <li><a onClick={ () => { this.props.history.push('/terms') } }>terms & conditions</a></li>

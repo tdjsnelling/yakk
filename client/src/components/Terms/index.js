@@ -6,6 +6,7 @@ class Terms extends React.PureComponent {
   render () {
     return (
       <div className="Terms">
+        <h2>yakk</h2>
         <h3>terms & conditions</h3>
 
         <p>By using the yakk Web site, and/or related products and/or services, you agree to the following terms: Do not use yakk if you are under 13. If you are under 18, use it only with a parent/guardian's permission. Do not transmit nudity, sexually harass anyone, publicize other peoples' private information, make statements that defame or libel anyone, violate intellectual property rights, use automated programs to start chats, or behave in any other inappropriate or illegal way on yakk.</p>

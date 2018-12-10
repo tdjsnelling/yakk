@@ -6,6 +6,7 @@ class Terms extends React.PureComponent {
   render () {
     return (
       <div className="Terms">
+        <h2>yakk</h2>
         <h3>privacy policy</h3>
 
         <p>we don't store your data, period.</p>
