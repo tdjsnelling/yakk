@@ -188,7 +188,7 @@ class App extends Component {
       setTimeout(() => {
         this.setState({ isTyping: { self: false } })
         this.notifyOfTyping(false)
-      }, 1000)
+      }, 3000)
     }
   }
 
