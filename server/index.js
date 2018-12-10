@@ -3,6 +3,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const server = require('http').createServer(app)
 const io = require('socket.io')(server)
+const request = require('request')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -87,6 +88,19 @@ app.post('/typing', (req, res) => {
 	userSocket.emit('notifyTyping', req.body.isTyping)
 
 	res.sendStatus(200)
+})
+
+app.post('/recaptcha', (req, res) => {
+	res.setHeader('Access-Control-Allow-Origin', '*')
+
+	request.post('https://www.google.com/recaptcha/api/siteverify', { form: { 'secret': '6Le29X8UAAAAABaWWB85zCx0zOla4etSlD2X7vVn', response: req.body.response } }, (err, resp, body) => {
+		if (err) {
+			res.sendStatus(500)
+		}
+		else {
+			res.send(body)
+		}
+	})
 })
 
 // helpers

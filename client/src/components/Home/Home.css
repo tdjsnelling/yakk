@@ -1,0 +1,54 @@
+.Container {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  color: #222;
+}
+
+.Logotype {
+  font-size: 140px;
+  font-family: monospace;
+}
+
+.Blurb {
+  font-size: 15px;
+  font-family: monospace;
+  margin-bottom: 64px;
+}
+
+.Button {
+  border: 2px solid white;
+  background-color: #222;
+  color: white;
+  padding: 8px 32px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.Button:hover {
+  background-color: #999;
+}
+
+.Links {
+  margin: 40px 0 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: monospace;
+  color: #999;
+}
+
+.Links li {
+  display: inline;
+}
+
+.Links li + li {
+  margin-left: 12px;
+}
+
+.Links a {
+  color: #999;
+  border-bottom: 1px dotted #999;
+  cursor: pointer;
+  text-decoration: none;
+}

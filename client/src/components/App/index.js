@@ -5,10 +5,7 @@ import moment from 'moment'
 import Linkify from 'linkifyjs/react'
 import crypto from 'crypto'
 
-import Modal from './components/Modal'
-
 import './App.css'
-import icon from './icon.png'
 
 const SERVER = 'http://localhost:3001'
 
@@ -223,9 +220,6 @@ class App extends Component {
               </form>
             </div>
           </div>
-        }
-        {this.state.showOptions &&
-          <Modal title="Options" toggle={this.toggleOptions} />
         }
       </div>
     )
