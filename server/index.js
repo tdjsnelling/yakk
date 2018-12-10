@@ -90,6 +90,12 @@ app.post('/typing', (req, res) => {
 	res.sendStatus(200)
 })
 
+app.get('/count', (req, res) => {
+	res.setHeader('Access-Control-Allow-Origin', '*')
+
+	res.send({users: Object.keys(users).length })
+})
+
 app.post('/recaptcha', (req, res) => {
 	res.setHeader('Access-Control-Allow-Origin', '*')
 

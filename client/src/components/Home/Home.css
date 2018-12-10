@@ -23,10 +23,18 @@
 .Blurb {
   font-size: 15px;
   font-family: monospace;
-  margin-bottom: 64px;
+  margin-bottom: 32px;
+}
+
+.UserCount {
+  font-size: 15px;
+  font-family: monospace;
+  margin-bottom: 32px;
+  text-decoration: underline;
 }
 
 .Button {
+  display: inline-block;
   border: 2px solid white;
   background-color: #222;
   color: white;
