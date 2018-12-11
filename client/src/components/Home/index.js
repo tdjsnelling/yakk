@@ -20,7 +20,7 @@ class Home extends React.PureComponent {
   }
 
   componentDidMount() {
-    request(`${SERVER}/count`, (err, res, body) => {
+    request(SERVER, (err, res, body) => {
       if (!err) {
         this.setState({ userCount: JSON.parse(body).users })
       }

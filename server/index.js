@@ -35,6 +35,12 @@ io.on('connection', socket => {
 
 // http
 
+app.get('/', (req, res) => {
+	res.setHeader('Access-Control-Allow-Origin', '*')
+
+	res.send({ status: 'OK', timestamp: Date.now(), users: Object.keys(users).length })
+})
+
 app.get('/list', (req, res) => {
 	res.setHeader('Access-Control-Allow-Origin', '*')
 
@@ -88,12 +94,6 @@ app.post('/typing', (req, res) => {
 	userSocket.emit('notifyTyping', req.body.isTyping)
 
 	res.sendStatus(200)
-})
-
-app.get('/count', (req, res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*')
-
-	res.send({users: Object.keys(users).length })
 })
 
 app.post('/recaptcha', (req, res) => {
