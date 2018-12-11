@@ -144,6 +144,11 @@ class App extends Component {
     })
   }
 
+  componentWillUnmount() {
+    this.state.socket.close()
+    this.setState({ socket: null })
+  }
+
   sendMessage(e) {
     e.preventDefault()
 
