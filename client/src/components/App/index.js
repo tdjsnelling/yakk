@@ -7,7 +7,7 @@ import crypto from 'crypto'
 
 import './App.css'
 
-const SERVER = 'http://localhost:3001'
+const SERVER = process.env.REACT_APP_ENV === 'production' ? 'https://s.yakk.xyz' : 'http://localhost:3001'
 
 class App extends Component {
   constructor(props) {
