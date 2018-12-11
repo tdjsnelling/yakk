@@ -205,7 +205,7 @@ class App extends Component {
       <div className="App">
         <header className="Nav">
           <div className="NavGroup">
-            <h1>yakk</h1>
+            <h1 className="NavLogo"><a href="/">yakk</a></h1>
             {this.state.connected && <p>ID: {this.shortId(this.state.socket.id)}</p>}
             {!this.state.connected && <p>unable to connect! we'll keep trying for you...</p>}
           </div>

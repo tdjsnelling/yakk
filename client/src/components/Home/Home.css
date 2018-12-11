@@ -75,3 +75,7 @@
   color: red;
   font-family: 'Courier', monospace;
 }
+
+.grecaptcha-badge {
+  display: none !important;
+}

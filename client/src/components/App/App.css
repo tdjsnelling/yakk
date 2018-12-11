@@ -46,6 +46,11 @@ html, body, .App {
 	margin: 0 24px;
 }
 
+.NavLogo a {
+	color: white;
+	text-decoration: none;
+}
+
 .Icon {
 	width: 32px;
 	margin-right: 16px
