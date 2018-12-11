@@ -50,6 +50,7 @@ html, body, .App {
 .NavLogo a {
 	color: white;
 	text-decoration: none;
+	font-weight: bold;
 }
 
 .Icon {
