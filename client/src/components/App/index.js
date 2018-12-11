@@ -110,6 +110,11 @@ class App extends Component {
     })
   }
 
+  componentWillUnmount() {
+    this.state.socket.close()
+    this.setState({ socket: null })
+  }
+
   findPartner() {
     this.setState({
       partner: null,
@@ -142,11 +147,6 @@ class App extends Component {
         })
       }
     })
-  }
-
-  componentWillUnmount() {
-    this.state.socket.close()
-    this.setState({ socket: null })
   }
 
   sendMessage(e) {
@@ -201,7 +201,7 @@ class App extends Component {
       setTimeout(() => {
         this.setState({ isTyping: { self: false } })
         this.notifyOfTyping(false)
-      }, 3000)
+      }, 2000)
     }
   }
 
