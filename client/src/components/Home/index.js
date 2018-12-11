@@ -11,7 +11,8 @@ class Home extends React.PureComponent {
     super()
 
     this.state = {
-      userCount: 0
+      userCount: 0,
+      errored: false
     }
 
     this.recaptchaRef = React.createRef()
@@ -22,6 +23,9 @@ class Home extends React.PureComponent {
     request(`${SERVER}/count`, (err, res, body) => {
       if (!err) {
         this.setState({ userCount: JSON.parse(body).users })
+      }
+      else {
+        this.setState({ errored: true })
       }
     })
   }
@@ -44,8 +48,15 @@ class Home extends React.PureComponent {
         <div className="Container">
           <h1 className="Logotype">yakk</h1>
           <p className="Blurb">yakk is an anonymous chat service that partners you with a random user from anywhere on the planet. it is a great way to make new friends, or it's perfect if you're bored and just want to chat!</p>
-          <p className="UserCount">{this.state.userCount} users online now</p>
-          <a className="Button" onClick={ () => { this.recaptchaRef.current.execute() } }>start yakking</a>
+          {!this.state.errored &&
+            <React.Fragment>
+              <p className="UserCount">{this.state.userCount} users online now</p>
+              <a className="Button" onClick={ () => { this.recaptchaRef.current.execute() } }>start yakking</a>
+            </React.Fragment>
+          }
+          {this.state.errored &&
+            <h3 className="ServiceError">oops, something has gone wrong. please try again later!</h3>
+          }
           <ul className="Links">
             <li><a onClick={ () => { this.props.history.push('/terms') } }>terms & conditions</a></li>
             <li><a onClick={ () => { this.props.history.push('/privacy') } }>privacy policy</a></li>

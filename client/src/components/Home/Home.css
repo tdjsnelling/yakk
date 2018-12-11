@@ -70,3 +70,8 @@
   cursor: pointer;
   text-decoration: none;
 }
+
+.ServiceError {
+  color: red;
+  font-family: monospace;
+}
