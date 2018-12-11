@@ -32,7 +32,7 @@ class Home extends React.PureComponent {
         const response = JSON.parse(data)
         console.dir(response)
         if (response.success) {
-          this.props.history.push('/chat')
+          this.props.history.push({ pathname: '/chat', state: { passedCaptcha: true } })
         }
       }
     })

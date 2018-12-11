@@ -10,10 +10,13 @@ import './App.css'
 const SERVER = 'http://localhost:3001'
 
 class App extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+
+    const isHuman = props.location.state ? props.location.state.passedCaptcha : false
 
     this.state = {
+      isHuman: isHuman,
       socket: null,
       partner: null,
       connected: false,
@@ -36,6 +39,11 @@ class App extends Component {
   }
 
   componentDidMount() {
+    if (!this.state.isHuman) {
+      this.props.history.push('/')
+      return 1
+    }
+
     const socket = io(SERVER)
 
     socket.on('connect', () => {
