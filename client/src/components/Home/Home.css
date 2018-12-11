@@ -16,21 +16,21 @@
 
 .Logotype {
   font-size: 140px;
-  font-family: monospace;
+  font-family: 'Courier', monospace;
   margin-top: 0;
 }
 
 .Blurb {
   font-size: 15px;
-  font-family: monospace;
+  font-family: 'Courier', monospace;
   margin-bottom: 32px;
 }
 
 .UserCount {
   font-size: 15px;
-  font-family: monospace;
+  font-family: 'Courier', monospace;
   margin-bottom: 32px;
-  text-decoration: underline;
+  color: coral;
 }
 
 .Button {
@@ -52,7 +52,7 @@
   margin: 40px 0 0 0;
   padding: 0;
   list-style: none;
-  font-family: monospace;
+  font-family: 'Courier', monospace;
   color: #999;
 }
 
@@ -73,5 +73,5 @@
 
 .ServiceError {
   color: red;
-  font-family: monospace;
+  font-family: 'Courier', monospace;
 }

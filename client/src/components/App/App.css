@@ -19,7 +19,7 @@ html, body, .App {
 
 .Nav h1, .Nav p {
 	margin: 0;
-	font-family: monospace;
+	font-family: 'Courier', monospace;
 	font-weight: normal;
 }
 
@@ -77,7 +77,7 @@ button:hover {
 }
 
 .Message .Timestamp {
-	font-family: monospace;
+	font-family: 'Courier', monospace;
 	color: #999;
 	margin-right: 22px;
 }
@@ -85,6 +85,7 @@ button:hover {
 .Message .MessageText {
 	flex-grow: 1;
 	padding: 0 32px;
+	font-size: 16px;
 }
 
 .Message.out .MessageText {
@@ -107,7 +108,7 @@ button:hover {
 	padding: 8px 32px;
 	background: #f0f0f0;
 	transform: translateY(-100%);
-	font-family: monospace;
+	font-family: 'Courier', monospace;
 }
 
 .SendMessage {
