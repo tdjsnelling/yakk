@@ -28,16 +28,6 @@ html, body, .App {
 	margin-top: -6px;
 }
 
-@media screen and (max-width: 680px) {
-	.Nav {
-		flex-direction: column;
-	}
-
-	.NavGroup:first-child {
-		margin-bottom: 24px;
-	}
-}
-
 .NavGroup {
 	display: flex;
 	align-items: center;
@@ -141,6 +131,7 @@ button:hover {
 	color: black;
 	border: 2px solid white;
 	flex-grow: 1;
+	min-width: 0px;
 }
 
 .SendMessage input:focus {
@@ -168,5 +159,17 @@ button:hover {
 	}
 	75%, 100% {
 		transform: rotate(180deg);
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.hidden-mobile {
+		display: none;
+	}
+	.SendMessage button {
+		padding: 8px 16px;
+	}
+	.MessageText {
+		word-break: break-word;
 	}
 }

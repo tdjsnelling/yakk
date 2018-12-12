@@ -211,11 +211,11 @@ class App extends Component {
         <header className="Nav">
           <div className="NavGroup">
             <h1 className="NavLogo"><a href="/">yakk</a></h1>
-            {this.state.connected && <p>ID: {this.shortId(this.state.socket.id)}</p>}
+            {this.state.connected && <p className="hidden-mobile">ID: {this.shortId(this.state.socket.id)}</p>}
             {!this.state.connected && <p>unable to connect! we'll keep trying for you...</p>}
           </div>
           <div className="NavGroup">
-            <p>{`${this.state.usersOnline}  users online!`}</p>
+            <p className="hidden-mobile">{`${this.state.usersOnline}  users online!`}</p>
             <button onClick={this.findPartner}>Find a new partner</button>
           </div>
         </header>
@@ -228,7 +228,7 @@ class App extends Component {
             {this.state.isTyping.partner && <div className="PartnerTyping">partner is typing...</div>}
             <div className="SendMessage">
               <form onSubmit={this.sendMessage}>
-                <input ref={this.messageRef} onChange={this.monitorTyping} />
+                <input type="text" ref={this.messageRef} onChange={this.monitorTyping} />
                 <button>Send</button>
               </form>
             </div>
