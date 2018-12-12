@@ -46,6 +46,7 @@ class Home extends React.PureComponent {
     return (
       <div className="Wrapper">
         <div className="Container">
+          <img className="Logo" src="/icon.png" alt="yakk logo"/>
           <h1 className="Logotype">yakk</h1>
           <p className="Blurb">yakk is an anonymous chat service that partners you with a random user from anywhere on the planet. it is a great way to make new friends, or it's perfect if you're bored and just want to chat!</p>
           {!this.state.errored &&

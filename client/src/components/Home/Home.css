@@ -14,6 +14,11 @@
   color: #222;
 }
 
+.Logo {
+  width: 60px;
+  height: auto;
+}
+
 .Logotype {
   font-size: 140px;
   font-family: 'Courier', monospace;
