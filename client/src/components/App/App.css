@@ -166,7 +166,7 @@ button:hover {
 	.hidden-mobile {
 		display: none;
 	}
-	.SendMessage button {
+	button {
 		padding: 8px 16px;
 	}
 	.MessageText {

@@ -229,7 +229,7 @@ class App extends Component {
             <div className="SendMessage">
               <form onSubmit={this.sendMessage}>
                 <input type="text" ref={this.messageRef} onChange={this.monitorTyping} />
-                <button>Send</button>
+                <button><i className="material-icons">send</i></button>
               </form>
             </div>
           </div>
