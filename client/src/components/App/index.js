@@ -111,8 +111,10 @@ class App extends Component {
   }
 
   componentWillUnmount() {
-    this.state.socket.close()
-    this.setState({ socket: null })
+    if (this.state.socket) {
+      this.state.socket.close()
+      this.setState({ socket: null })
+    }
   }
 
   findPartner() {
