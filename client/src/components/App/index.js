@@ -4,6 +4,7 @@ import request from 'request'
 import moment from 'moment'
 import Linkify from 'linkifyjs/react'
 import crypto from 'crypto'
+import ga from 'react-ga'
 
 import './App.css'
 
@@ -44,6 +45,9 @@ class App extends Component {
       return 1
     }
 
+    ga.initialize('UA-87488863-5')
+    ga.pageview(window.location.pathname + window.location.search)
+
     const socket = io(SERVER)
 
     socket.on('connect', () => {
@@ -69,6 +73,11 @@ class App extends Component {
       messages.push({ d: 'in', m: 'Connected to partner ' + this.shortId(this.state.partner) + '. Start yakking!', t: Date.now() })
       this.setState({
         messages: messages
+      })
+
+      ga.event({
+        category: 'Social',
+        action: 'Conversation initiated'
       })
     })
 
@@ -177,6 +186,11 @@ class App extends Component {
 
       this.notifyOfTyping(false)
     }
+
+    ga.event({
+      category: 'Social',
+      action: 'Message sent'
+    })
   }
 
   notifyOfTyping(status) {

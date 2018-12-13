@@ -1,5 +1,6 @@
 import React from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
+import ga from 'react-ga'
 import request from 'request'
 
 import './Home.css'
@@ -20,6 +21,9 @@ class Home extends React.PureComponent {
   }
 
   componentDidMount() {
+    ga.initialize('UA-87488863-5')
+    ga.pageview(window.location.pathname + window.location.search)
+
     request(SERVER, (err, res, body) => {
       if (!err) {
         this.setState({ userCount: JSON.parse(body).users })
