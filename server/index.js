@@ -128,4 +128,4 @@ const getRandomFreeUserId = (initiatingUser) => {
 
 // expose ports
 
-server.listen(3001)
+module.exports = server.listen(3001)
