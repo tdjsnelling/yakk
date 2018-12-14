@@ -1,0 +1,15 @@
+{
+  "name": "yakk",
+  "version": 2,
+  "build": {
+    "env": {
+      "REACT_APP_ENV": "production"
+    }
+  },
+  "builds": [
+    {
+      "src": "client/*.js",
+      "use": "@now/node"
+    }
+  ]
+}
