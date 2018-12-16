@@ -17,7 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "now-build": "REACT_APP_ENV=production react-scripts build && mv build dist"
+    "now-build": "REACT_APP_ENV=production react-scripts build"
   },
   "author": "Tom Snelling",
   "browserslist": [
