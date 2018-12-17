@@ -38,7 +38,6 @@ class Home extends React.PureComponent {
     request.post(`${SERVER}/recaptcha`, { form: { 'response': value } }, (err, res, data) => {
       if (!err) {
         const response = JSON.parse(data)
-        console.dir(response)
         if (response.success) {
           this.props.history.push({ pathname: '/chat', state: { passedCaptcha: true } })
         }
