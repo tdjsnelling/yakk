@@ -1,8 +1,8 @@
-h2, pre {
+.NotFoundPrompt, pre {
   font-family: 'Courier', monospace;
 }
 
-a {
+.HomeLink {
   color: #999;
   text-decoration: none;
   border-bottom: 1px dotted #999;

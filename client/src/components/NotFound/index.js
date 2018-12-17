@@ -21,7 +21,7 @@ class NotFound extends React.PureComponent {
         !!  ! ! \\( \\(  !!!|/!  |/!
               /_(/_(    /_(  /_(
           `}</pre>
-          <h2>the page you're looking for doesn't exist. maybe you should head back <a href="/">home</a>.</h2>
+          <h2 className="NotFoundPrompt">the page you're looking for doesn't exist. maybe you should head back <a href="/" className="HomeLink">home</a>.</h2>
         </div>
       </div>
     )
