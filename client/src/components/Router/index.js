@@ -4,6 +4,7 @@ import Home from '../Home'
 import App from '../App'
 import Terms from '../Terms'
 import Privacy from '../Privacy'
+import NotFound from '../NotFound'
 
 class Router extends React.Component {
   componentDidMount() {
@@ -18,6 +19,7 @@ class Router extends React.Component {
           <Route path='/chat' component={App} />
           <Route path='/terms' component={Terms} />
           <Route path='/privacy' component={Privacy} />
+          <Route component={NotFound} />
         </Switch>
       </BrowserRouter>
     )
