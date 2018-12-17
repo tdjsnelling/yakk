@@ -13,6 +13,7 @@
   "routes": [
     { "src": "^/static/(.*)", "dest": "/static/$1" },
     { "src": "^/icons/(.*)", "dest": "/icons/$1" },
+    { "src": "^/sounds/(.*)", "dest": "/sounds/$1" },
     { "src": "^/icon.png", "dest": "/icon.png" },
     { "src": "^/favicon.ico", "dest": "/favicon.ico" },
     { "src": "^/asset-manifest.json", "dest": "/asset-manifest.json" },
