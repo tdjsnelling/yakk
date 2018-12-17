@@ -5,17 +5,23 @@ import App from '../App'
 import Terms from '../Terms'
 import Privacy from '../Privacy'
 
-const Router = () => {
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path='/' component={Home} />
-        <Route path='/chat' component={App} />
-        <Route path='/terms' component={Terms} />
-        <Route path='/privacy' component={Privacy} />
-      </Switch>
-    </BrowserRouter>
-  )
+class Router extends React.Component {
+  componentDidMount() {
+    console.log('want to know how yakk works? it\'s open source! https://github.com/tdjsnelling/yakk')
+  }
+
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route path='/chat' component={App} />
+          <Route path='/terms' component={Terms} />
+          <Route path='/privacy' component={Privacy} />
+        </Switch>
+      </BrowserRouter>
+    )
+  }
 }
 
-export default Router;
+export default Router
