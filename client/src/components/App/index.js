@@ -15,6 +15,7 @@ class App extends Component {
     super(props)
 
     const isHuman = props.location.state ? props.location.state.passedCaptcha : false
+    this.notificationSound = new Audio('/sounds/definite.mp3')
 
     this.state = {
       isHuman: isHuman,
@@ -89,6 +90,7 @@ class App extends Component {
       })
 
       this.messageContainerRef.current.scrollTop = this.messageContainerRef.current.scrollHeight
+      this.notificationSound.play()
     })
 
     socket.on('count', count => {

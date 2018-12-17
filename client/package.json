@@ -17,6 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "deploy": "now && now alias && now rm yakk --safe --yes",
     "now-build": "REACT_APP_ENV=production react-scripts build"
   },
   "author": "Tom Snelling",
