@@ -56,15 +56,15 @@ class Home extends React.PureComponent {
           {!this.state.errored &&
             <React.Fragment>
               <p className="UserCount">{this.state.userCount} users online now</p>
-              <a className="Button" onClick={ () => { this.recaptchaRef.current.execute() } }>start yakking</a>
+              <button className="Button" onClick={ () => { this.recaptchaRef.current.execute() } }>start yakking</button>
             </React.Fragment>
           }
           {this.state.errored &&
             <h3 className="ServiceError">oops, something has gone wrong. please try again later!</h3>
           }
           <ul className="Links">
-            <li><a onClick={ () => { this.props.history.push('/terms') } }>terms & conditions</a></li>
-            <li><a onClick={ () => { this.props.history.push('/privacy') } }>privacy policy</a></li>
+            <li><a href="/terms" onClick={ (e) => { e.preventDefault(); this.props.history.push('/terms') } }>terms & conditions</a></li>
+            <li><a href="/privacy" onClick={ (e) => { e.preventDefault(); this.props.history.push('/privacy') } }>privacy policy</a></li>
           </ul>
 
           <ReCAPTCHA
