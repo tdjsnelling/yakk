@@ -8,7 +8,8 @@ import ga from 'react-ga'
 
 import './App.css'
 
-const SERVER = process.env.REACT_APP_ENV === 'production' ? 'https://s.yakk.xyz' : 'http://localhost:3001'
+const isDev = process.env.REACT_APP_ENV !== 'production'
+const SERVER = isDev ? 'http://localhost:3001' : 'https://s.yakk.xyz'
 
 class App extends Component {
   constructor(props) {
@@ -71,7 +72,12 @@ class App extends Component {
       })
 
       let messages = [...this.state.messages]
-      messages.push({ d: 'in', m: 'Connected to partner ' + this.shortId(this.state.partner) + '. Start yakking!', t: Date.now() })
+      if (isDev) {
+        messages.push({ d: 'in', m: `Connected to partner ${this.shortId(this.state.partner)}. Start yakking!`, t: Date.now() })
+      }
+      else {
+         messages.push({ d: 'in', m: 'Connected to partner. Start yakking!', t: Date.now() })
+      }
       this.setState({
         messages: messages
       })
@@ -147,7 +153,12 @@ class App extends Component {
         })
 
         let messages = [...this.state.messages]
-        messages.push({ d: 'in', m: 'Connected to partner ' + this.shortId(this.state.partner) + '. Start yakking!', t: Date.now() })
+        if (isDev) {
+          messages.push({ d: 'in', m: `Connected to partner ${this.shortId(this.state.partner)}. Start yakking!`, t: Date.now() })
+        }
+        else {
+           messages.push({ d: 'in', m: 'Connected to partner. Start yakking!', t: Date.now() })
+        }
         this.setState({
           messages: messages
         })
@@ -229,7 +240,7 @@ class App extends Component {
         <header className="Nav">
           <div className="NavGroup">
             <h1 className="NavLogo"><a href="/">yakk</a></h1>
-            {this.state.connected && <p className="hidden-mobile">ID: {this.shortId(this.state.socket.id)}</p>}
+            {(this.state.connected && isDev) && <p className="hidden-mobile">ID: {this.shortId(this.state.socket.id)}</p>}
             {!this.state.connected && <p>unable to connect! we'll keep trying for you...</p>}
           </div>
           <div className="NavGroup">
