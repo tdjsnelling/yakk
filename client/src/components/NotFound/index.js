@@ -7,9 +7,9 @@ class NotFound extends React.PureComponent {
     return (
       <div className="Wrapper">
         <div className="Container">
-          <pre>{`
+          <pre className="AsciiYak">{`
              _--,-----,_
-         ,-,-----       ''-.,_
+          _,-,-----       ''-.,_
  /)     (\\                   '''-.
 ( ( .,-') )                      ''
  \\ '    (_/                      !!

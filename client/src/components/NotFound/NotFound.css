@@ -2,6 +2,12 @@
   font-family: 'Courier', monospace;
 }
 
+.AsciiYak {
+  text-align: left;
+  max-width: 315px;
+  margin: 14px auto;
+}
+
 .HomeLink {
   color: #999;
   text-decoration: none;

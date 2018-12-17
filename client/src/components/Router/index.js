@@ -8,7 +8,21 @@ import NotFound from '../NotFound'
 
 class Router extends React.Component {
   componentDidMount() {
-    console.log('want to know how yakk works? it\'s open source! https://github.com/tdjsnelling/yakk')
+    console.log(`
+             _--,-----,_
+          _,-,-----       ''-.,_
+ /)     (\\                   '''-.
+( ( .,-') )                      ''
+ \\ '    (_/                      !!
+  |       /            '          !!!
+  '\\    ^'            '     !    !!!!
+    !      _/! , !   !  ! !  !   !!!
+     \\Y,   |!!!  !  ! !!  !! !!!!!!!
+       '!!! !!!! !!  )!!!!!!!!!!!!!
+        !!  ! ! \\( \\(  !!!|/!  |/!
+              /_(/_(    /_(  /_(
+          
+want to know how yakk works? it's open source! https://github.com/tdjsnelling/yakk`)
   }
 
   render() {
