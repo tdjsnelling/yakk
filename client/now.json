@@ -1,0 +1,24 @@
+{
+  "name": "yakk",
+  "version": 2,
+  "alias": "yakk.xyz",
+  "build": {
+    "env": {
+      "REACT_APP_ENV": "production"
+    }
+  },
+  "builds": [
+    { "src": "package.json", "use": "@now/static-build", "config": { "distDir": "build" } }
+  ],
+  "routes": [
+    { "src": "^/static/(.*)", "dest": "/static/$1" },
+    { "src": "^/icons/(.*)", "dest": "/icons/$1" },
+    { "src": "^/icon.png", "dest": "/icon.png" },
+    { "src": "^/favicon.ico", "dest": "/favicon.ico" },
+    { "src": "^/asset-manifest.json", "dest": "/asset-manifest.json" },
+    { "src": "^/manifest.json", "dest": "/manifest.json" },
+    { "src": "^/service-worker.js", "headers": {"cache-control": "s-maxage=0"}, "dest": "/service-worker.js" },
+    { "src": "^/precache-manifest.(.*)", "dest": "/precache-manifest.$1" },
+    { "src": "^/(.*)", "dest": "/index.html" }
+  ]
+}
