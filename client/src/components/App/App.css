@@ -48,6 +48,14 @@ html, body, .App {
 	margin-right: 16px
 }
 
+.AdSpace {
+	background: #eee;
+	width: 100%;
+	height: 100px;
+	padding: 10px 0;
+	text-align: center;
+}
+
 .Messages {
 	flex-grow: 1;
 	height: 0;

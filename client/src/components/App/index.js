@@ -5,6 +5,7 @@ import request from 'request'
 import moment from 'moment'
 import Linkify from 'linkifyjs/react'
 import ga from 'react-ga'
+import AdSense from 'react-adsense'
 
 import './App.css'
 
@@ -255,6 +256,12 @@ class App extends Component {
             <button onClick={this.findPartner}>{this.state.pressedEscape ? 'Are you sure? (ESC)' : 'Find a new partner'}</button>
           </div>
         </header>
+        <div className="AdSpace">
+          <AdSense.Google
+            client="ca-pub-7983105686272949"
+            slot="0"
+          />
+        </div>
         <div className="Messages" ref={this.messageContainerRef}>
           {!this.state.connected && <i className="material-icons loading">hourglass_empty</i>}
           {this.state.messages.map((message, i) => (
