@@ -3,7 +3,6 @@ import io from 'socket.io-client'
 import request from 'request'
 import moment from 'moment'
 import Linkify from 'linkifyjs/react'
-import crypto from 'crypto'
 import ga from 'react-ga'
 
 import './App.css'
@@ -37,7 +36,6 @@ class App extends Component {
 
     this.findPartner = this.findPartner.bind(this)
     this.sendMessage = this.sendMessage.bind(this)
-    this.shortId = this.shortId.bind(this)
     this.toggleOptions = this.toggleOptions.bind(this)
     this.monitorTyping = this.monitorTyping.bind(this)
   }
@@ -85,7 +83,7 @@ class App extends Component {
 
       let messages = [...this.state.messages]
       if (isDev) {
-        messages.push({ d: 'in', m: `Connected to partner ${this.shortId(this.state.partner)}. Start yakking!`, t: Date.now() })
+        messages.push({ d: 'in', m: `Connected to partner ${this.state.partner}. Start yakking!`, t: Date.now() })
       }
       else {
          messages.push({ d: 'in', m: 'Connected to partner. Start yakking!', t: Date.now() })
@@ -167,7 +165,7 @@ class App extends Component {
 
         let messages = [...this.state.messages]
         if (isDev) {
-          messages.push({ d: 'in', m: `Connected to partner ${this.shortId(this.state.partner)}. Start yakking!`, t: Date.now() })
+          messages.push({ d: 'in', m: `Connected to partner ${this.state.partner}. Start yakking!`, t: Date.now() })
         }
         else {
            messages.push({ d: 'in', m: 'Connected to partner. Start yakking!', t: Date.now() })
@@ -227,11 +225,6 @@ class App extends Component {
     })
   }
 
-  shortId(id) {
-    const hash = crypto.createHash('sha256').update(id).digest('hex')
-    return hash.slice(0, 8)
-  }
-
   toggleOptions() {
     this.setState({ showOptions: !this.state.showOptions })
   }
@@ -253,7 +246,7 @@ class App extends Component {
         <header className="Nav">
           <div className="NavGroup">
             <h1 className="NavLogo"><a href="/">yakk</a></h1>
-            {(this.state.connected && isDev) && <p className="hidden-mobile">ID: {this.shortId(this.state.socket.id)}</p>}
+            {(this.state.connected && isDev) && <p className="hidden-mobile">ID: {this.state.socket.id}</p>}
             {!this.state.connected && <p>unable to connect! we'll keep trying for you...</p>}
           </div>
           <div className="NavGroup">
@@ -263,7 +256,12 @@ class App extends Component {
         </header>
         <div className="Messages" ref={this.messageContainerRef}>
           {!this.state.connected && <i className="material-icons loading">hourglass_empty</i>}
-          {this.state.messages.map((message, i) => <div className={`Message ${message.d === 'out' ? 'out' : 'in'}`} key={i}><span className="Timestamp">{moment(parseInt(message.t, 10)).format('HH:mm:ss')}</span><Linkify tagName="span" className="MessageText">{message.m}</Linkify></div>)}
+          {this.state.messages.map((message, i) => (
+            <div className={`Message ${message.d === 'out' ? 'out' : 'in'}`} key={i}>
+              <span className="Timestamp">{moment(parseInt(message.t, 10)).format('HH:mm:ss')}</span>
+              <Linkify tagName="span" className="MessageText">{message.m}</Linkify>
+            </div>
+          ))}
         </div>
         {this.state.partner &&
           <div className="SendMessageWrapper">
