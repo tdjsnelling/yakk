@@ -34,9 +34,8 @@
 .UserCount {
   font-size: 15px;
   font-family: 'Courier', monospace;
-  font-weight: bold;
-  margin-bottom: 32px;
-  color: coral;
+  margin: 8px 0 32px;
+  color: #999;
 }
 
 .Button {

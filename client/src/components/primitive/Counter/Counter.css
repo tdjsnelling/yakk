@@ -1,0 +1,33 @@
+.Counter {
+  font-family: 'Courier', monospace;
+  font-size: 18px;
+}
+
+.CounterDigit {
+  display: inline-block;
+  border: 1px solid #222;
+  border-radius: 2px;
+  padding: 4px 8px;
+  margin: 0 2px;
+  position: relative;
+}
+
+.CounterDigit::before {
+  content: '';
+  background: #999;
+  width: 6px;
+  height: 1px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+}
+
+.CounterDigit::after {
+  content: '';
+  background: #999;
+  width: 6px;
+  height: 1px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+}

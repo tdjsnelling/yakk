@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import ReCAPTCHA from 'react-google-recaptcha'
 import ga from 'react-ga'
 import request from 'request'
+import Counter from '../primitive/Counter'
 
 import './Home.css'
 
@@ -54,7 +55,8 @@ class Home extends React.PureComponent {
           <p className="Blurb">yakk is an anonymous chat service that partners you with a random user from anywhere on the planet. it is a great way to make new friends, or it's perfect if you're bored and just want to chat!</p>
           {!this.state.errored &&
             <React.Fragment>
-              <p className="UserCount">{this.state.userCount} users online now</p>
+              <Counter count={this.state.userCount} />
+              <p className="UserCount">users online now</p>
               <button className="Button" onClick={() => { this.recaptchaRef.current.execute() }}>start yakking</button>
             </React.Fragment>
           }
