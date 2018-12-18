@@ -1,8 +1,14 @@
 import React from 'react'
+import ga from 'react-ga'
 
 import './NotFound.css'
 
 class NotFound extends React.PureComponent {
+  componentDidMount() {
+    ga.initialize('UA-87488863-5')
+    ga.pageview(window.location.pathname + window.location.search)
+  }
+
   render () {
     return (
       <div className="Wrapper">
