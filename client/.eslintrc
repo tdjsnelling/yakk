@@ -10,16 +10,6 @@
     "es6": true,
     "node": true,
     "mocha": true,
-    "jquery": true,
     "browser": true
-  },
-  "globals": {
-    "Backbone": true,
-    "API_URL": true,
-    "SITE_URL": true,
-    "REALTIME_URL": true,
-    "Power2": true,
-    "importScripts": true,
-    "workbox": true
   }
 }

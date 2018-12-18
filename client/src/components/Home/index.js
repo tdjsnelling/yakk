@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import ReCAPTCHA from 'react-google-recaptcha'
 import ga from 'react-ga'
 import request from 'request'
@@ -8,7 +9,7 @@ import './Home.css'
 const SERVER = process.env.REACT_APP_ENV === 'production' ? 'https://s.yakk.xyz' : 'http://localhost:3001'
 
 class Home extends React.PureComponent {
-  constructor() {
+  constructor () {
     super()
 
     this.state = {
@@ -20,21 +21,20 @@ class Home extends React.PureComponent {
     this.captchaComplete = this.captchaComplete.bind(this)
   }
 
-  componentDidMount() {
+  componentDidMount () {
     ga.initialize('UA-87488863-5')
     ga.pageview(window.location.pathname + window.location.search)
 
     request(SERVER, (err, res, body) => {
       if (!err) {
         this.setState({ userCount: JSON.parse(body).users })
-      }
-      else {
+      } else {
         this.setState({ errored: true })
       }
     })
   }
 
-  captchaComplete(value) {
+  captchaComplete (value) {
     request.post(`${SERVER}/recaptcha`, { form: { 'response': value } }, (err, res, data) => {
       if (!err) {
         const response = JSON.parse(data)
@@ -49,21 +49,21 @@ class Home extends React.PureComponent {
     return (
       <div className="Wrapper">
         <div className="Container">
-          <img className="Logo" src="/icon.png" alt="yakk logo"/>
+          <img className="Logo" src="/icon.png" alt="yakk logo" />
           <h1 className="Logotype">yakk</h1>
           <p className="Blurb">yakk is an anonymous chat service that partners you with a random user from anywhere on the planet. it is a great way to make new friends, or it's perfect if you're bored and just want to chat!</p>
           {!this.state.errored &&
             <React.Fragment>
               <p className="UserCount">{this.state.userCount} users online now</p>
-              <button className="Button" onClick={ () => { this.recaptchaRef.current.execute() } }>start yakking</button>
+              <button className="Button" onClick={() => { this.recaptchaRef.current.execute() }}>start yakking</button>
             </React.Fragment>
           }
           {this.state.errored &&
             <h3 className="ServiceError">oops, something has gone wrong. please try again later!</h3>
           }
           <ul className="Links">
-            <li><a href="/terms" onClick={ (e) => { e.preventDefault(); this.props.history.push('/terms') } }>terms & conditions</a></li>
-            <li><a href="/privacy" onClick={ (e) => { e.preventDefault(); this.props.history.push('/privacy') } }>privacy policy</a></li>
+            <li><a href="/terms" onClick={(e) => { e.preventDefault(); this.props.history.push('/terms') }}>terms & conditions</a></li>
+            <li><a href="/privacy" onClick={(e) => { e.preventDefault(); this.props.history.push('/privacy') }}>privacy policy</a></li>
           </ul>
 
           <ReCAPTCHA
@@ -76,6 +76,10 @@ class Home extends React.PureComponent {
       </div>
     )
   }
+}
+
+Home.propTypes = {
+  history: PropTypes.object
 }
 
 export default Home

@@ -18,7 +18,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "now && now alias && now rm yakk --safe --yes",
-    "now-build": "REACT_APP_ENV=production react-scripts build"
+    "now-build": "REACT_APP_ENV=production react-scripts build",
+    "lint": "eslint --cache --ext '.js,.jsx' src/components"
   },
   "author": "Tom Snelling",
   "browserslist": [

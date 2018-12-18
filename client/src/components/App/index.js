@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import io from 'socket.io-client'
 import request from 'request'
 import moment from 'moment'
@@ -11,7 +12,7 @@ const isDev = process.env.REACT_APP_ENV !== 'production'
 const SERVER = isDev ? 'http://localhost:3001' : 'https://s.yakk.xyz'
 
 class App extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     const isHuman = props.location.state ? props.location.state.passedCaptcha : false
@@ -40,7 +41,7 @@ class App extends Component {
     this.monitorTyping = this.monitorTyping.bind(this)
   }
 
-  componentDidMount() {
+  componentDidMount () {
     if (!this.state.isHuman) {
       this.props.history.push('/')
       return 1
@@ -53,8 +54,7 @@ class App extends Component {
       if (e.key === 'Escape') {
         if (!this.state.pressedEscape) {
           this.setState({ pressedEscape: true })
-        }
-        else {
+        } else {
           this.findPartner()
         }
       }
@@ -81,12 +81,11 @@ class App extends Component {
         messages: []
       })
 
-      let messages = [...this.state.messages]
+      let messages = [ ...this.state.messages ]
       if (isDev) {
         messages.push({ d: 'in', m: `Connected to partner ${this.state.partner}. Start yakking!`, t: Date.now() })
-      }
-      else {
-         messages.push({ d: 'in', m: 'Connected to partner. Start yakking!', t: Date.now() })
+      } else {
+        messages.push({ d: 'in', m: 'Connected to partner. Start yakking!', t: Date.now() })
       }
       this.setState({
         messages: messages
@@ -99,7 +98,7 @@ class App extends Component {
     })
 
     socket.on('message', message => {
-      let messages = [...this.state.messages]
+      let messages = [ ...this.state.messages ]
       messages.push(message)
       this.setState({
         messages: messages
@@ -117,7 +116,7 @@ class App extends Component {
 
     socket.on('userDisconnect', id => {
       if (id === this.state.partner) {
-        let messages = [...this.state.messages]
+        let messages = [ ...this.state.messages ]
         messages.push({ d: 'in', m: 'Partner disconnected! Click above to find a new one.', t: Date.now() })
         this.setState({
           partner: null,
@@ -137,14 +136,14 @@ class App extends Component {
     })
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     if (this.state.socket) {
       this.state.socket.close()
       this.setState({ socket: null })
     }
   }
 
-  findPartner() {
+  findPartner () {
     this.setState({
       partner: null,
       messages: [],
@@ -158,33 +157,35 @@ class App extends Component {
     })
 
     request(`${SERVER}/discover/` + this.state.socket.id, (err, res, body) => {
-      if (body !== 'no-free-users') {
-        this.setState({
-          partner: body
-        })
+      if (!err) {
+        if (body !== 'no-free-users') {
+          this.setState({
+            partner: body
+          })
 
-        let messages = [...this.state.messages]
-        if (isDev) {
-          messages.push({ d: 'in', m: `Connected to partner ${this.state.partner}. Start yakking!`, t: Date.now() })
+          let messages = [ ...this.state.messages ]
+          if (isDev) {
+            messages.push({ d: 'in', m: `Connected to partner ${this.state.partner}. Start yakking!`, t: Date.now() })
+          } else {
+            messages.push({ d: 'in', m: 'Connected to partner. Start yakking!', t: Date.now() })
+          }
+          this.setState({
+            messages: messages
+          })
+        } else {
+          let messages = [ ...this.state.messages ]
+          messages.push({ d: 'in', m: 'Could not find a partner. Please try again!', t: Date.now() })
+          this.setState({
+            messages: messages
+          })
         }
-        else {
-           messages.push({ d: 'in', m: 'Connected to partner. Start yakking!', t: Date.now() })
-        }
-        this.setState({
-          messages: messages
-        })
-      }
-      else {
-        let messages = [...this.state.messages]
-        messages.push({ d: 'in', m: 'Could not find a partner. Please try again!', t: Date.now() })
-        this.setState({
-          messages: messages
-        })
+      } else {
+        console.error(err)
       }
     })
   }
 
-  sendMessage(e) {
+  sendMessage (e) {
     e.preventDefault()
 
     const messageContent = this.messageRef.current.value
@@ -192,7 +193,7 @@ class App extends Component {
     this.messageRef.current.value = ''
 
     if (messageContent !== '') {
-      let messages = [...this.state.messages]
+      let messages = [ ...this.state.messages ]
       messages.push({ d: 'out', ...message })
       this.setState({
         messages: messages
@@ -217,7 +218,7 @@ class App extends Component {
     })
   }
 
-  notifyOfTyping(status) {
+  notifyOfTyping (status) {
     request.post(`${SERVER}/typing`, { form: { isTyping: status, to: this.state.partner } }, (err, res, body) => {
       if (err) {
         console.error(err)
@@ -225,11 +226,11 @@ class App extends Component {
     })
   }
 
-  toggleOptions() {
+  toggleOptions () {
     this.setState({ showOptions: !this.state.showOptions })
   }
 
-  monitorTyping() {
+  monitorTyping () {
     if (!this.state.isTyping.self) {
       this.setState({ isTyping: { self: true } })
       this.notifyOfTyping(true)
@@ -240,7 +241,7 @@ class App extends Component {
     }
   }
 
-  render() {
+  render () {
     return (
       <div className="App">
         <header className="Nav">
@@ -277,6 +278,11 @@ class App extends Component {
       </div>
     )
   }
+}
+
+App.propTypes = {
+  location: PropTypes.object,
+  history: PropTypes.object
 }
 
 export default App

@@ -4,7 +4,7 @@ import ga from 'react-ga'
 import '../Terms/Terms.css'
 
 class Terms extends React.PureComponent {
-  componentDidMount() {
+  componentDidMount () {
     ga.initialize('UA-87488863-5')
     ga.pageview(window.location.pathname + window.location.search)
   }

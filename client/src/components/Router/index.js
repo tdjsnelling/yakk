@@ -7,7 +7,7 @@ import Privacy from '../Privacy'
 import NotFound from '../NotFound'
 
 class Router extends React.Component {
-  componentDidMount() {
+  componentDidMount () {
     console.log(`
              _--,-----,_
           _,-,-----       ''-.,_
@@ -21,18 +21,18 @@ class Router extends React.Component {
        '!!! !!!! !!  )!!!!!!!!!!!!!
         !!  ! ! \\( \\(  !!!|/!  |/!
               /_(/_(    /_(  /_(
-          
+
 want to know how yakk works? it's open source! https://github.com/tdjsnelling/yakk`)
   }
 
-  render() {
+  render () {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path='/' component={Home} />
-          <Route path='/chat' component={App} />
-          <Route path='/terms' component={Terms} />
-          <Route path='/privacy' component={Privacy} />
+          <Route exact path="/" component={Home} />
+          <Route path="/chat" component={App} />
+          <Route path="/terms" component={Terms} />
+          <Route path="/privacy" component={Privacy} />
           <Route component={NotFound} />
         </Switch>
       </BrowserRouter>
