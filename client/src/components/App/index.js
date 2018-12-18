@@ -28,7 +28,8 @@ class App extends Component {
       isTyping: {
         self: false,
         partner: false
-      }
+      },
+      pressedEscape: false
     }
 
     this.messageContainerRef = React.createRef()
@@ -49,6 +50,17 @@ class App extends Component {
 
     ga.initialize('UA-87488863-5')
     ga.pageview(window.location.pathname + window.location.search)
+
+    window.addEventListener('keyup', e => {
+      if (e.key === 'Escape') {
+        if (!this.state.pressedEscape) {
+          this.setState({ pressedEscape: true })
+        }
+        else {
+          this.findPartner()
+        }
+      }
+    })
 
     const socket = io(SERVER)
 
@@ -137,7 +149,8 @@ class App extends Component {
   findPartner() {
     this.setState({
       partner: null,
-      messages: []
+      messages: [],
+      pressedEscape: false
     })
 
     request(`${SERVER}/makeFree/` + this.state.socket.id, (err, res, body) => {
@@ -245,7 +258,7 @@ class App extends Component {
           </div>
           <div className="NavGroup">
             <p className="hidden-mobile">{`${this.state.usersOnline}  users online!`}</p>
-            <button onClick={this.findPartner}>Find a new partner</button>
+            <button onClick={this.findPartner}>{this.state.pressedEscape ? 'Are you sure? (ESC)' : 'Find a new partner'}</button>
           </div>
         </header>
         <div className="Messages" ref={this.messageContainerRef}>
