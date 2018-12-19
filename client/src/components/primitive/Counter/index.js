@@ -9,7 +9,7 @@ class Counter extends React.PureComponent {
 
     return (
       <div className="Counter">
-        {digits.map(digit => <div className="CounterDigit">{digit}</div>)}
+        {digits.map(digit => <div className="CounterDigit" key={`counter-${digit}`}>{digit}</div>)}
       </div>
     )
   }
