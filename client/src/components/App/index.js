@@ -116,7 +116,12 @@ class App extends Component {
       })
 
       this.messageContainerRef.current.scrollTop = this.messageContainerRef.current.scrollHeight
-      this.notificationSound.play()
+
+      try {
+        this.notificationSound.play()
+      } catch (e) {
+        // unable to play in this context
+      }
     })
 
     socket.on('count', count => {
@@ -134,7 +139,7 @@ class App extends Component {
           messages: messages
         })
 
-        request(`${SERVER}/makeFree/` + this.state.socket.id, (err, res, body) => {
+        request(`${SERVER}/make-free/` + this.state.socket.id, (err, res, body) => {
           if (err) {
             console.error(err)
           }
@@ -161,7 +166,7 @@ class App extends Component {
       pressedEscape: false
     })
 
-    request(`${SERVER}/makeFree/` + this.state.socket.id, (err, res, body) => {
+    request(`${SERVER}/make-free/` + this.state.socket.id, (err, res, body) => {
       if (err) {
         console.error(err)
       }

@@ -70,7 +70,7 @@ app.get('/discover/:initiatingUser', (req, res) => {
 	}
 })
 
-app.get('/makeFree/:id', (req, res) => {
+app.get('/make-free/:id', (req, res) => {
 	res.setHeader('Access-Control-Allow-Origin', '*')
 
 	users[req.params.id].free = true
