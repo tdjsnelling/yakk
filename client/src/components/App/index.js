@@ -5,6 +5,7 @@ import request from 'request'
 import moment from 'moment'
 import Linkify from 'linkifyjs/react'
 import ga from 'react-ga'
+import { isMobile } from 'react-device-detect'
 
 import './App.css'
 
@@ -19,7 +20,7 @@ class App extends Component {
     this.notificationSound = new Audio('/sounds/definite.mp3')
 
     this.state = {
-      isHuman: isHuman,
+      isHuman: isDev ? true : isHuman,
       socket: null,
       partner: null,
       connected: false,
@@ -49,6 +50,16 @@ class App extends Component {
 
     ga.initialize('UA-87488863-5')
     ga.pageview(window.location.pathname + window.location.search)
+
+    if (isMobile) {
+      let vh = window.innerHeight * 0.01
+      document.documentElement.style.setProperty('--vh', `${vh}px`)
+
+      window.addEventListener('resize', () => {
+        vh = window.innerHeight * 0.01
+        document.documentElement.style.setProperty('--vh', `${vh}px`)
+      })
+    }
 
     window.addEventListener('keyup', e => {
       if (e.key === 'Escape') {

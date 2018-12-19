@@ -1,5 +1,6 @@
 html, body, .App {
 	height: 100vh;
+	height: calc(var(--vh, 1vh) * 100);
 	overflow-x: hidden;
 }
 
@@ -125,6 +126,9 @@ button:hover {
 }
 
 .SendMessage input {
+	-webkit-appearance: none;
+	-webkit-border-radius: 0;
+	border-radius: 0;
 	font-size: 20px;
 	padding: 12px 16px;
 	background-color: white;
@@ -141,6 +145,12 @@ button:hover {
 .SendMessage button {
 	height: 51px;
 	margin-left: -2px;
+}
+
+@media screen and (max-width: 768px) {
+	.SendMessage button {
+		height: 53px;
+	}
 }
 
 .loading {
