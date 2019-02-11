@@ -40,17 +40,18 @@ app.get('/list', (req, res) => {
 })
 
 app.get('/discover/:initiatingUser', (req, res) => {
-	const partner = users[getRandomFreeUserId(req.params.initiatingUser)]
-
-	if (partner) {
-		partner.free = false
-		users[req.params.initiatingUser].free = false
-		partner.socket.emit('foundPartner', req.params.initiatingUser)
-		res.send(partner.socket.id)
-	}
-	else {
-		res.send('no-free-users')
-	}
+	getRandomFreeUserId(req.params.initiatingUser, 15, id => {
+		if (id) {
+			const partner = users[id]
+			partner.free = false
+			users[req.params.initiatingUser].free = false
+			partner.socket.emit('foundPartner', req.params.initiatingUser)
+			res.send(partner.socket.id)
+		}
+		else {
+			res.send('no-free-users')
+		}
+	})
 })
 
 app.get('/make-free/:id', (req, res) => {
@@ -84,18 +85,25 @@ app.post('/recaptcha', (req, res) => {
 
 // helpers
 
-const getRandomFreeUserId = (initiatingUser) => {
+const getRandomFreeUserId = (initiatingUser, retries, cb) => {
 	const freeUsers = Object.keys(users).filter(x => {
 		return users[x].free && x !== initiatingUser
 	})
 
 	if (freeUsers.length) {
-		const rand = Math.floor(Math.random() * Object.keys(freeUsers).length)
+		const rand = Math.floor(Math.random() * freeUsers.length)
 		const randomUserId = freeUsers[rand]
-		return randomUserId
+		return cb(randomUserId)
 	}
 	else {
-		return null
+		if (retries >= 0) {
+			setTimeout(() => {
+				getRandomFreeUserId(initiatingUser, retries - 1, cb)
+			}, 150)
+		}
+		else {
+			return cb(null)
+		}
 	}
 }
 

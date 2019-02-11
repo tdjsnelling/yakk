@@ -85,10 +85,7 @@ class App extends Component {
 
     socket.on('foundPartner', partnerId => {
       this.setState({
-        partner: partnerId
-      })
-
-      this.setState({
+        partner: partnerId,
         messages: []
       })
 
@@ -162,7 +159,7 @@ class App extends Component {
   findPartner () {
     this.setState({
       partner: null,
-      messages: [],
+      messages: [ { d: 'in', m: 'Looking for a partner... hold tight!', t: Date.now() } ],
       pressedEscape: false
     })
 
@@ -174,27 +171,24 @@ class App extends Component {
 
     request(`${SERVER}/discover/` + this.state.socket.id, (err, res, body) => {
       if (!err) {
+        let messages = []
+
         if (body !== 'no-free-users') {
           this.setState({
             partner: body
           })
 
-          let messages = [ ...this.state.messages ]
           if (isDev) {
             messages.push({ d: 'in', m: `Connected to partner ${this.state.partner}. Start yakking!`, t: Date.now() })
           } else {
             messages.push({ d: 'in', m: 'Connected to partner. Start yakking!', t: Date.now() })
           }
-          this.setState({
-            messages: messages
-          })
         } else {
-          let messages = [ ...this.state.messages ]
           messages.push({ d: 'in', m: 'Could not find a partner. Please try again!', t: Date.now() })
-          this.setState({
-            messages: messages
-          })
         }
+        this.setState({
+          messages: messages
+        })
       } else {
         console.error(err)
       }
