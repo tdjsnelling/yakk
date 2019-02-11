@@ -16,7 +16,8 @@ let users = {}
 // socket
 
 io.on('connection', socket => {
-	users[socket.id] = { free: true, socket: socket	}
+	socket.free = true
+	users[socket.id] = socket
 	io.emit('count', Object.keys(users).length)
 	socket.on('disconnect', () => {
 		io.emit('userDisconnect', socket.id)
@@ -45,8 +46,8 @@ app.get('/discover/:initiatingUser', (req, res) => {
 			const partner = users[id]
 			partner.free = false
 			users[req.params.initiatingUser].free = false
-			partner.socket.emit('foundPartner', req.params.initiatingUser)
-			res.send(partner.socket.id)
+			partner.emit('foundPartner', req.params.initiatingUser)
+			res.send(partner.id)
 		}
 		else {
 			res.send('no-free-users')
@@ -61,14 +62,12 @@ app.get('/make-free/:id', (req, res) => {
 })
 
 app.post('/send', (req, res) => {
-	const userSocket = users[req.body.to].socket
-	userSocket.send(req.body.message)
+	users[req.body.to].send(req.body.message)
 	res.sendStatus(200)
 })
 
 app.post('/typing', (req, res) => {
-	const userSocket = users[req.body.to].socket
-	userSocket.emit('notifyTyping', req.body.isTyping)
+	users[req.body.to].emit('notifyTyping', req.body.isTyping)
 	res.sendStatus(200)
 })
 
