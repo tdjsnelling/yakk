@@ -1,5 +1,6 @@
 import React from 'react'
 import ga from 'react-ga'
+import PropTypes from 'prop-types'
 
 import '../Terms/Terms.css'
 
@@ -12,6 +13,7 @@ class Terms extends React.PureComponent {
   render () {
     return (
       <div className="Terms">
+        <a href="/" onClick={(e) => { e.preventDefault(); this.props.history.push('/') }}>&larr; back</a>
         <h2>yakk</h2>
         <h3>privacy policy</h3>
 
@@ -19,6 +21,10 @@ class Terms extends React.PureComponent {
       </div>
     )
   }
+}
+
+Terms.propTypes = {
+  history: PropTypes.object
 }
 
 export default Terms
