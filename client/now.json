@@ -1,7 +1,6 @@
 {
   "name": "yakk",
   "version": 2,
-  "alias": "yakk.xyz",
   "build": {
     "env": {
       "REACT_APP_ENV": "production"
