@@ -7,7 +7,7 @@ import Counter from '../primitive/Counter'
 
 import './Home.css'
 
-const SERVER = process.env.REACT_APP_ENV === 'production' ? 'https://s.yakk.xyz' : 'http://localhost:3001'
+const SERVER = process.env.REACT_APP_ENV === 'production' ? 'https://yakk-api.tdjs.tech' : 'http://localhost:3001'
 
 class Home extends React.PureComponent {
   constructor () {

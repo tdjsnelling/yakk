@@ -10,7 +10,7 @@ import { isMobile } from 'react-device-detect'
 import './App.css'
 
 const isDev = process.env.REACT_APP_ENV !== 'production'
-const SERVER = isDev ? 'http://localhost:3001' : 'https://s.yakk.xyz'
+const SERVER = isDev ? 'http://localhost:3001' : 'https://yakk-api.tdjs.tech'
 
 class App extends Component {
   constructor (props) {
