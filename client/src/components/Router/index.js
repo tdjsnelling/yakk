@@ -7,7 +7,7 @@ import Privacy from '../Privacy'
 import NotFound from '../NotFound'
 
 class Router extends React.Component {
-  /* componentDidMount () {
+  componentDidMount () {
     console.log(`
              _--,-----,_
           _,-,-----       ''-.,_
@@ -23,7 +23,7 @@ class Router extends React.Component {
               /_(/_(    /_(  /_(
 
 want to know how yakk works? it's open source! https://github.com/tdjsnelling/yakk`)
-  } */
+  }
 
   render () {
     return (
