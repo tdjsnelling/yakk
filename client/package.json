@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "linkifyjs": "^2.1.8",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "react": "^16.8.1",
     "react-device-detect": "^1.6.2",
     "react-dom": "^16.8.1",
